@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import BeatlesMapContainer from "./BeatlesMapContainer";
 
 class App extends Component {
-  render() {
+
+	state = {
+		sights: [],
+		latitude: 53.397734,
+		longitude: -2.936724,
+		location: "",
+		keyword: "",
+		showMoreOptions: false,
+		distance: 10,
+		showSightDetails: false,
+		selectedSight: ""
+	};
+
+	render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+				<BeatlesMapContainer
+					sights={this.state.sights}
+					location={ {lat: this.state.latitude, lng: this.state.longitude} }
+				/>
       </div>
     );
   }
