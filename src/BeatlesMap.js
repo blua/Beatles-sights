@@ -9,6 +9,9 @@ const BeatlesMap = withScriptjs(withGoogleMap((props) =>{
                     key={sight.id}
                     sight={sight}
                     location={sight.location}
+										closeMarkers={props.closeOtherMarkers}
+										activeMarker={sight.id === props.activeMarker ? true : false}
+										showInfo={false}
                   />);
 
   return (
