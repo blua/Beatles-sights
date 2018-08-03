@@ -6,9 +6,9 @@ const BeatlesMap = withScriptjs(withGoogleMap((props) =>{
 
   const markers = props.sights.map( sight =>
 		<BeatlesMarker
-                    key={sight.uid}
+                    key={sight.id}
                     sight={sight}
-                    location={{lat: 0.0, lng: 0.0}}
+                    location={sight.location}
                   />);
 
   return (
