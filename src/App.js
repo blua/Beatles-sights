@@ -38,12 +38,17 @@ class App extends Component {
 		this.setState({query: ''})
 	}
 
+	/* Method to select a sight when it is clicked in the sidebar list */
+	selectSight = (sight) => {
+		this.setState({selectedSight: sight.id})
+	}
+
 	render() {
 
 		const {sights} = this.state
 		const {query} = this.state
 
-		let showingSights
+		let showingSights = sights
 		if (query) {
 			const match = new RegExp(escapeRegExp(query), 'i')
 			showingSights = sights.filter((sight) => match.test(sight.name))
@@ -64,27 +69,30 @@ class App extends Component {
 						/>
 					</div>
 
-					{showingSights.length !== sights.length && (
-						<div className='showing-sights'>
-						<span>Now showing {showingSights.length} of {sights.length} total</span>
-						<button onClick={this.clearQuery}>Show all</button>
-						</div>
-					)}
-
-
 					<ol className='sight-list'>
 						{showingSights.map((sight) => (
 							<li key={sight.id} className='sight-list-item'>
 							 <div className='sight-details'>
-								<p>{sight.name}</p>
+								<p onClick={() => {this.selectSight(sight) }}>{sight.name}</p>
+								{console.log('In Apps selected is ' + this.state.selectedSight)}
 							 </div>
 							</li>
 						))}
 					</ol>
+
+					{showingSights.length !== sights.length ?
+						<div className='showing-sights'>
+						{showingSights.length === 0 ?
+						<span>No matching sights</span> :
+						<span>Now showing {showingSights.length} of {sights.length} Beatles sights</span>}
+						<br /><button onClick={this.clearQuery}>Show all</button>
+					</div> : null }
+
 				</div>
 				<BeatlesMapContainer
 					sights={showingSights}
-					location={ {lat: this.state.latitude, lng: this.state.longitude} }
+					location={ {lat: this.state.latitude, lng: this.state.longitude}}
+					selected={this.state.selectedSight}
 				/>
 			</div>
     );

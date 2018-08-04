@@ -19,15 +19,18 @@ export default class BeatlesMarker extends React.Component {
 			} else {
 				this.setState({activeMarker: this.props.sight.id});
 				this.setState({infoWindowOpen: true});
-				console.log(this.state.activeMarker, this.state.infoWindowOpen)
+				// console.log(this.state.activeMarker, this.state.infoWindowOpen)
 			}
 	}
 
   render(){
+
+		// console.log(this.props.selected)
+
     return(
         <Marker
           position={this.props.location}
-          icon={SubmarineIcon}
+          icon={this.props.selected === this.props.sight.id ? SubmarineIcon : ''}
 					onClick={this.toggleOpen}
         >
 				 { this.state.infoWindowOpen && this.state.activeMarker === this.props.sight.id === true ?
