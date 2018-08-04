@@ -11,6 +11,7 @@ export default class BeatlesMapContainer extends React.Component {
 			<BeatlesMap
 				sights={this.props.sights}
 				location={this.props.location}
+				selectSight={this.selectSight}
 				selected={this.props.selected}
 				googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDyRtaH9hDTxrFTNaC_de76xgGsoXrvecY&v=3.exp&libraries=geometry,drawing,places`}
 				loadingElement={<div style={{ height: `100%` }} />}

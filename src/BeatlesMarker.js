@@ -6,7 +6,7 @@ export default class BeatlesMarker extends React.Component {
 
 	state = {
 		infoWindowOpen: false,
-		activeMarker: null
+		selected: this.props.selected
 	}
 
 	closeAllWindows = () => {
@@ -14,26 +14,30 @@ export default class BeatlesMarker extends React.Component {
 	}
 
 	toggleOpen = () => {
-	    if (this.state.activeMarker === this.props.sight.id) {
-				this.setState({activeMarker: null});
+	    if (this.state.selected === this.props.sight.id) {
+				this.setState({selected: null});
 			} else {
-				this.setState({activeMarker: this.props.sight.id});
+				this.setState({selected: this.props.sight.id});
 				this.setState({infoWindowOpen: true});
-				// console.log(this.state.activeMarker, this.state.infoWindowOpen)
+				console.log("After clicking a marker, selected is " + this.state.selected)
 			}
 	}
 
   render(){
 
-		// console.log(this.props.selected)
+		/* If I change this.props.selected to this.state.selected in the icon option
+		the list clicks stop affecting the markers. But if I keep it as props,
+		clicking the marker itself doesn't change the icon
+		https://stackoverflow.com/questions/27754101/change-google-maps-marker-icon-when-clicking-on-other
+		*/
 
     return(
         <Marker
           position={this.props.location}
           icon={this.props.selected === this.props.sight.id ? SubmarineIcon : ''}
-					onClick={this.toggleOpen}
+					onClick={() => this.props.selectSight(this.props.sight.id)}
         >
-				 { this.state.infoWindowOpen && this.state.activeMarker === this.props.sight.id === true ?
+				 { this.state.infoWindowOpen && this.state.selected === this.props.sight.id === true ?
 					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
 						<span>{this.props.sight.name}</span>
 					</InfoWindow> : null

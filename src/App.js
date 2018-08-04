@@ -92,6 +92,7 @@ class App extends Component {
 				<BeatlesMapContainer
 					sights={showingSights}
 					location={ {lat: this.state.latitude, lng: this.state.longitude}}
+					selectSight={this.selectSight}
 					selected={this.state.selectedSight}
 				/>
 			</div>
