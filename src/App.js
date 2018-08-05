@@ -39,8 +39,8 @@ class App extends Component {
 	}
 
 	/* Method to select a sight when it is clicked in the sidebar list */
-	selectSight = (sight) => {
-		this.setState({selectedSight: sight.id})
+	selectSight = (id) => {
+		this.setState({selectedSight: id})
 	}
 
 	render() {
@@ -73,7 +73,7 @@ class App extends Component {
 						{showingSights.map((sight) => (
 							<li key={sight.id} className='sight-list-item'>
 							 <div className='sight-details'>
-								<p onClick={() => {this.selectSight(sight) }}>{sight.name}</p>
+								<p onClick={() => {this.selectSight(sight.id) }}>{sight.name}</p>
 								{console.log('In Apps selected is ' + this.state.selectedSight)}
 							 </div>
 							</li>
