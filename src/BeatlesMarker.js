@@ -1,11 +1,10 @@
 import React from "react";
-import { Marker, InfoWindow } from "react-google-maps";
+import { Marker, InfoWindow, Animation } from "react-google-maps";
 import SubmarineIcon from "./submarine.png";
 
 export default class BeatlesMarker extends React.Component {
 
 	state = {
-		infoWindowOpen: false,
 		selected: this.props.selected,
 		thisMarkerId: this.props.sight.id
 	}
@@ -37,12 +36,14 @@ export default class BeatlesMarker extends React.Component {
 		console.log("Selected is " + this.props.selected + ", this icon's id is " + this.props.sight.id)
 
     return(
+			// Animation currently not working
         <Marker
           position={this.props.location}
-          icon={this.props.selected === this.props.sight.id ? SubmarineIcon : ''}
+          icon={this.props.selected === this.state.thisMarkerId ? SubmarineIcon : ''}
 					onClick={this.toggleOpen}
+					animation={this.props.selected === this.state.thisMarkerId ? 'DROP' : ''}
         >
-				 { this.state.infoWindowOpen && this.state.selected === this.props.sight.id === true ?
+				 { this.props.selected === this.state.thisMarkerId === true ?
 					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
 						<span>{this.props.sight.name}</span>
 					</InfoWindow> : null
