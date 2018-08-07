@@ -6,7 +6,15 @@ export default class BeatlesMarker extends React.Component {
 
 	state = {
 		selected: this.props.selected,
-		thisMarkerId: this.props.sight.id
+		thisMarkerId: this.props.sight.id,
+		url: "https://api.foursquare.com/v2/venues/" + this.props.sight.foursquareID + "?client_id=HV4TWNQT0ZP3KJX4HDIQNILSAJO0CZ1EDDIT3L2BT2QMO0B4&client_secret=OLMLCMS3ZXSZSM4UOKQTWIW24WQOYNDXYPI1HUBLJ4GZEMEB&v=20150609",
+		data: {}
+	}
+
+	componentDidMount() {
+		fetch(this.state.url)
+			.then(response => response.json())
+			.then(data => this.setState({ data }));
 	}
 
 	closeAllWindows = () => {
@@ -27,16 +35,10 @@ export default class BeatlesMarker extends React.Component {
 
   render(){
 
-		/* If I change this.props.selected to this.state.selected in the icon option
-		the list clicks stop affecting the markers. But if I keep it as props,
-		clicking the marker itself doesn't change the icon
-		https://stackoverflow.com/questions/27754101/change-google-maps-marker-icon-when-clicking-on-other
-		*/
-
-		console.log("Selected is " + this.props.selected + ", this icon's id is " + this.props.sight.id)
+		console.log("Selected is " + this.props.selected + ", this icon's 4SQ id is " + this.state.url)
 
     return(
-			// Animation currently not working
+			// Animation currently not working; foursquare quota exceeded; trying to get image src to work
         <Marker
           position={this.props.location}
           icon={this.props.selected === this.state.thisMarkerId ? SubmarineIcon : ''}
@@ -45,7 +47,10 @@ export default class BeatlesMarker extends React.Component {
         >
 				 { this.props.selected === this.state.thisMarkerId === true ?
 					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
-						<span>{this.props.sight.name}</span>
+						<div>
+							<img src={"https://igx.4sqi.net/img/general/width960/" + this.state.data.response.venue.bestPhoto.suffix} />
+							<span>{this.state.data.response.venue.name}</span>
+						</div>
 					</InfoWindow> : null
 				}
         </Marker>
