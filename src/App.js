@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import BeatlesMapContainer from "./BeatlesMapContainer";
+import BeatlesMap from "./BeatlesMap";
 import Sidebar from "./Sidebar";
 import escapeRegExp from 'escape-string-regexp';
 
@@ -59,11 +59,15 @@ class App extends Component {
 						selected={this.state.selectedSight}
 					/>
 				</div>
-				<BeatlesMapContainer
+				<BeatlesMap
 					sights={showingSights}
 					location={ {lat: this.state.latitude, lng: this.state.longitude}}
 					selectSight={this.selectSight}
 					selected={this.state.selectedSight}
+					googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDyRtaH9hDTxrFTNaC_de76xgGsoXrvecY&v=3.exp&libraries=geometry,drawing,places`}
+					loadingElement={<div style={{ height: `100%` }} />}
+					containerElement={<div className="map-container" />}
+					mapElement={<div className="map" />}
 				/>
 			</div>
     );
