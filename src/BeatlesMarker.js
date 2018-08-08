@@ -47,10 +47,14 @@ export default class BeatlesMarker extends React.Component {
         >
 				 { this.props.selected === this.state.thisMarkerId === true ?
 					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
-						<div>
-							<img src={"https://igx.4sqi.net/img/general/width960/" + this.state.data.response.venue.bestPhoto.suffix} />
-							<span>{this.state.data.response.venue.name}</span>
-						</div>
+						{this.state.data.reponse ?
+							<div>
+								<img src={"https://igx.4sqi.net/img/general/width960" + this.state.data.response.venue.bestPhoto.suffix} width="300px"/>
+								<br /><h3>{this.state.data.response.venue.name}</h3>
+								<a href={this.state.data.response.venue.canonicalUrl} target="_blank">Open on Foursquare</a>
+							</div> :
+								<span>Sorry, no info about <b>{this.props.sight.name}</b> available at the moment due to the following error: <em>{this.state.data.meta.errorDetail}</em></span>
+							}
 					</InfoWindow> : null
 				}
         </Marker>
