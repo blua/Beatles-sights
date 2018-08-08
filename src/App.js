@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import BeatlesMapContainer from "./BeatlesMapContainer";
+import Sidebar from "./Sidebar";
 import escapeRegExp from 'escape-string-regexp';
 
 class App extends Component {
@@ -31,15 +32,7 @@ class App extends Component {
 		query:  ""
 	};
 
-	updateQuery = (query) => {
-		this.setState({query: query.trim()})
-	}
-
-	clearQuery = () => {
-		this.setState({query: ''})
-	}
-
-	/* Method to select a sight when it is clicked in the sidebar list */
+	/* Method to select a sight when it is clicked  */
 	selectSight = (id) => {
 		this.setState({selectedSight: id})
 	}
@@ -60,35 +53,11 @@ class App extends Component {
     return (
 			<div className="App">
 				<div className="sidebar">
-					<div className='list-sights'>
-						<input
-							className='search-sights'
-							type='text'
-							placeholder='Search sights'
-							value={query}
-							onChange={(event) => this.updateQuery(event.target.value)}
-						/>
-					</div>
-
-					<ol className='sight-list'>
-						{showingSights.map((sight) => (
-							<li key={sight.id} className='sight-list-item'>
-							 <div className='sight-details'>
-								<p onClick={() => {this.selectSight(sight.id) }} style={sight.id === this.state.selectedSight ? { backgroundColor: "#00B1E1" } : {}}>{sight.name}</p>
-								{console.log('In Apps selected is ' + this.state.selectedSight)}
-							 </div>
-							</li>
-						))}
-					</ol>
-
-					{showingSights.length !== sights.length ?
-						<div className='showing-sights'>
-						{showingSights.length === 0 ?
-						<span>No matching sights</span> :
-						<span>Now showing {showingSights.length} of {sights.length} Beatles sights</span>}
-						<br /><button onClick={this.clearQuery}>Show all</button>
-					</div> : null }
-
+					<Sidebar
+						sights={showingSights}
+						selectSight={this.selectSight}
+						selected={this.state.selectedSight}
+					/>
 				</div>
 				<BeatlesMapContainer
 					sights={showingSights}
