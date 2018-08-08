@@ -34,7 +34,11 @@ class App extends Component {
 
 	/* Method to select a sight when it is clicked  */
 	selectSight = (id) => {
-		this.setState({selectedSight: id})
+		if (this.state.selectedSight === id) {
+			this.setState({selectedSight: ''})
+		} else {
+			this.setState({selectedSight: id})
+		}
 	}
 
 	render() {

@@ -4,6 +4,7 @@ import escapeRegExp from 'escape-string-regexp'
 class Sidebar extends Component {
 
 	state = {
+		selected: this.props.selected,
 		query: ''
 	}
 
