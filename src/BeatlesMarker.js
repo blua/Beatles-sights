@@ -42,7 +42,7 @@ export default class BeatlesMarker extends React.Component {
         >
 				 { this.props.selected === this.state.thisSightId === true ?
 					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
-						{this.state.data.reponse ?
+						{this.state.data.response.venue ?
 							<div>
 								<img src={"https://igx.4sqi.net/img/general/width960" + this.state.data.response.venue.bestPhoto.suffix} width="300px"/>
 								<br /><h3>{this.state.data.response.venue.name}</h3>
