@@ -12,10 +12,8 @@ class App extends Component {
 		latitude: 53.397734,
 		longitude: -2.936724,
 		selectedSight: {},
-		query:  "",
 		data: {}
 	};
-
 
 	/* Method to select a sight when it is clicked  */
 	selectSight = (sight) => {
@@ -24,14 +22,13 @@ class App extends Component {
 		} else {
 			this.setState({selectedSight: sight})
 			let url = "https://api.foursquare.com/v2/venues/" + this.state.selectedSight.foursquareID + "?client_id=HV4TWNQT0ZP3KJX4HDIQNILSAJO0CZ1EDDIT3L2BT2QMO0B4&client_secret=OLMLCMS3ZXSZSM4UOKQTWIW24WQOYNDXYPI1HUBLJ4GZEMEB&v=20150609"
-			console.log(url)
-			fetch(url)
-				.then(response => response.json())
-				.then(data => this.setState({ data }))
-				.then(console.log(JSON.stringify(this.state.data)))
-				.catch(console.log("sorry"));
+					fetch(url)
+						.then((response) => response.json())
+						.then((data) => this.setState({ data: data }));
 		}
 	}
+
+
 
 	render() {
 
@@ -64,6 +61,7 @@ class App extends Component {
 					loadingElement={<div style={{ height: `100%` }} />}
 					containerElement={<div className="map-container" />}
 					mapElement={<div className="map" />}
+					data={this.state.data}
 				/>
 			</div>
     );
