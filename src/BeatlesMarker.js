@@ -1,46 +1,27 @@
 import React from "react";
-import { Marker, InfoWindow, Animation } from "react-google-maps";
+import { Marker, InfoWindow } from "react-google-maps";
 import SubmarineIcon from "./submarine.png";
 
 export default class BeatlesMarker extends React.Component {
 
 	state = {
 		selected: this.props.selected,
-		thisSightId: this.props.sight.id,
-		url: "https://api.foursquare.com/v2/venues/" + this.props.sight.foursquareID + "?client_id=HV4TWNQT0ZP3KJX4HDIQNILSAJO0CZ1EDDIT3L2BT2QMO0B4&client_secret=OLMLCMS3ZXSZSM4UOKQTWIW24WQOYNDXYPI1HUBLJ4GZEMEB&v=20150609",
-		data: {}
-	}
-
-	componentDidMount() {
-		fetch(this.state.url)
-			.then(response => response.json())
-			.then(data => this.setState({ data }));
-	}
-
-	closeAllWindows = () => {
-		this.setState({infoWindowOpen: false});
 	}
 
 	toggleOpen = () => {
-		this.props.selectSight(this.state.thisSightId);
-	    if (this.state.selected) {
-				this.setState({infoWindowOpen: true});
-			}
+		this.props.selectSight(this.props.sight);
 	}
 
   render(){
 
-		console.log("Selected is " + this.props.selected + ", this icon's 4SQ id is " + this.state.url)
-
     return(
-			// Animation currently not working; foursquare quota exceeded; trying to get image src to work
         <Marker
           position={this.props.location}
-          icon={this.props.selected === this.state.thisSightId ? SubmarineIcon : ''}
+          icon={this.props.selected === this.props.sight ? SubmarineIcon : ''}
 					onClick={this.toggleOpen}
-					animation={this.props.selected === this.state.thisSightId ? 'DROP' : ''}
+					animation={this.props.selected === this.props.sight ? 'DROP' : ''}
         >
-				 { this.props.selected === this.state.thisSightId === true ?
+				 { this.props.selected === this.props.sight === true ?
 					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
 						{this.state.data.response.venue ?
 							<div>
