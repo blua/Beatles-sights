@@ -16,15 +16,15 @@ class Sidebar extends Component {
 					/>
 				</div>
 
-				<ol className='sight-list'>
+				<ul className='sight-list'>
 					{this.props.filteredSights.map((sight) => (
 						<li key={sight.id} className='sight-list-item'>
 						 <div className='sight-details'>
-							<p onClick={() => {this.props.selectSight(sight) }} style={sight === this.props.selected ? { backgroundColor: "#00B1E1" } : {}}>{sight.name}</p>
+							<p onClick={() => {this.props.selectSight(sight)}} style={sight === this.props.selected ? { backgroundColor: "#00B1E1" } : {}}>{sight.name}</p>
 						 </div>
 						</li>
 					))}
-				</ol>
+				</ul>
 
 				{this.props.filteredSights.length !== this.props.sights.length ?
 					<div className='showing-sights'>

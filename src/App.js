@@ -8,6 +8,8 @@ import data from './BeatlesSights';
 class App extends Component {
 
 	state = {
+		windowWidth: window.innerWidth,
+    sidebarVisible: true,
 		sights: data.beatlesSights,
 		latitude: 53.397734,
 		longitude: -2.936724,
@@ -17,6 +19,18 @@ class App extends Component {
 		data: {},
 		showInfo: false
 	};
+
+	handleResize() {
+		this.setState({windowWidth: window.innerWidth});
+	}
+
+	componentDidMount() {
+		window.addEventListener('resize', () => this.handleResize());
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', () => this.handleResize());
+	}
 
 	updateQuery = (query) => {
 		this.setState({query: query.trim()})
@@ -48,8 +62,18 @@ class App extends Component {
 
 	render() {
 
+		console.log(this.state.windowWidth)
+
     return (
 			<div className="App">
+
+				{this.state.windowWidth < 1000 ?
+
+				<div className="App-header">Show Beatles sights!</div> : null }
+
+				<div className="wrapper">
+
+				{this.state.windowWidth > 1000 ?
 				<div className="sidebar">
 					<Sidebar
 						sights={this.state.sights}
@@ -61,7 +85,8 @@ class App extends Component {
 						selectSight={this.selectSight}
 						selected={this.state.selectedSight}
 					/>
-				</div>
+				</div> : null
+			}
 				<BeatlesMap
 					sights={this.state.sights}
 					filteredSights={this.state.filteredSights}
@@ -76,6 +101,7 @@ class App extends Component {
 					showInfo={this.state.showInfo}
 				/>
 			</div>
+		</div>
     );
   }
 }
