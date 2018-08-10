@@ -4,7 +4,7 @@ import BeatlesMarker from "./BeatlesMarker";
 
 const BeatlesMap = withScriptjs(withGoogleMap((props) =>{
 
-  const markers = props.sights.map( sight =>
+  const markers = props.filteredSights.map( sight =>
 		<BeatlesMarker
                     key={sight.id}
                     sight={sight}

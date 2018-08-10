@@ -11,6 +11,8 @@ class App extends Component {
 		sights: data.beatlesSights,
 		latitude: 53.397734,
 		longitude: -2.936724,
+		query: '',
+		filteredSights: data.beatlesSights,
 		selectedSight: {},
 		data: {},
 		showInfo: false
@@ -30,30 +32,45 @@ class App extends Component {
 		}
 	}
 
+	updateQuery = (query) => {
+		this.setState({query: query.trim()})
+	}
+
+	clearQuery = () => {
+		this.setState({query: ''})
+	}
+
+	filterSights = (query) => {
+		if (query) {
+			const match = new RegExp(escapeRegExp(query), 'i')
+			this.setState({filteredSights: this.state.sights.filter((sight) => match.test(sight.name) || match.test(sight.keywords))})
+		} else {
+			this.setState({filteredSights: this.state.sights})
+		}
+	}
+
 	render() {
 
 		const {sights} = this.state
 		const {query} = this.state
 
-		let showingSights = sights
-		if (query) {
-			const match = new RegExp(escapeRegExp(query), 'i')
-			showingSights = sights.filter((sight) => match.test(sight.name) || match.test(sight.keywords))
-		} else {
-			showingSights = sights
-		}
-
     return (
 			<div className="App">
 				<div className="sidebar">
 					<Sidebar
-						sights={showingSights}
+						sights={this.state.sights}
+						filteredSights={this.state.filteredSights}
+						query={this.state.query}
+						updateQuery={this.updateQuery}
+						clearQuery={this.clearQuery}
+						filterSights={this.filterSights}
 						selectSight={this.selectSight}
 						selected={this.state.selectedSight}
 					/>
 				</div>
 				<BeatlesMap
-					sights={showingSights}
+					sights={this.state.sights}
+					filteredSights={this.state.filteredSights}
 					location={ {lat: this.state.latitude, lng: this.state.longitude}}
 					selectSight={this.selectSight}
 					selected={this.state.selectedSight}

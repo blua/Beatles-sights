@@ -3,31 +3,7 @@ import escapeRegExp from 'escape-string-regexp'
 
 class Sidebar extends Component {
 
-	state = {
-		selected: this.props.selected,
-		query: ''
-	}
-
-	updateQuery = (query) => {
-		this.setState({query: query.trim()})
-	}
-
-	clearQuery = () => {
-		this.setState({query: ''})
-	}
-
 	render() {
-
-		const {sights} = this.props
-		const {query} = this.state
-
-		let showingSights = sights
-		if (query) {
-			const match = new RegExp(escapeRegExp(query), 'i')
-			showingSights = sights.filter((sight) => match.test(sight.name) || match.test(sight.keywords))
-		} else {
-			showingSights = sights
-		}
 
 		return (
 			<div className='list-sights'>
@@ -36,13 +12,13 @@ class Sidebar extends Component {
 						className='search-sights'
 						type='text'
 						placeholder='Search sights'
-						value={query}
-						onChange={(event) => this.updateQuery(event.target.value)}
+						value={this.props.query}
+						onChange={(event) => this.props.updateQuery(event.target.value)}
 					/>
 				</div>
 
 				<ol className='sight-list'>
-					{showingSights.map((sight) => (
+					{this.props.sights.map((sight) => (
 						<li key={sight.id} className='sight-list-item'>
 						 <div className='sight-details'>
 							<p onClick={() => {this.props.selectSight(sight) }} style={sight === this.props.selected ? { backgroundColor: "#00B1E1" } : {}}>{sight.name}</p>
@@ -51,12 +27,12 @@ class Sidebar extends Component {
 					))}
 				</ol>
 
-				{showingSights.length !== sights.length ?
+				{this.props.filteredSights.length !== this.props.sights.length ?
 					<div className='showing-sights'>
-					{showingSights.length === 0 ?
+					{this.props.filteredSights.length === 0 ?
 					<span>No matching sights</span> :
-					<span>Now showing {showingSights.length} of {sights.length} Beatles sights</span>}
-					<br /><button onClick={this.clearQuery}>Show all</button>
+					<span>Now showing {this.props.filteredSights.length} of {this.props.sights.length} Beatles sights</span>}
+					<br /><button onClick={this.props.clearQuery}>Show all</button>
 				</div> : null }
 			</div>
 		)
