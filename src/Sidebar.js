@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import escapeRegExp from 'escape-string-regexp'
 
 class Sidebar extends Component {
 
@@ -18,7 +17,7 @@ class Sidebar extends Component {
 				</div>
 
 				<ol className='sight-list'>
-					{this.props.sights.map((sight) => (
+					{this.props.filteredSights.map((sight) => (
 						<li key={sight.id} className='sight-list-item'>
 						 <div className='sight-details'>
 							<p onClick={() => {this.props.selectSight(sight) }} style={sight === this.props.selected ? { backgroundColor: "#00B1E1" } : {}}>{sight.name}</p>

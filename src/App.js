@@ -18,6 +18,20 @@ class App extends Component {
 		showInfo: false
 	};
 
+	updateQuery = (query) => {
+		this.setState({query: query.trim()})
+		if (query) {
+			const match = new RegExp(escapeRegExp(query), 'i')
+			this.setState({filteredSights: this.state.sights.filter((sight) => match.test(sight.name) || match.test(sight.keywords))})
+		} else {
+			this.setState({filteredSights: this.state.sights})
+		}
+	}
+
+	clearQuery = () => {
+		this.setState({query: ''})
+	}
+
 	/* Method to select a sight when it is clicked  */
 	selectSight = (sight) => {
 		if (this.state.selectedSight === sight) {
@@ -32,27 +46,7 @@ class App extends Component {
 		}
 	}
 
-	updateQuery = (query) => {
-		this.setState({query: query.trim()})
-	}
-
-	clearQuery = () => {
-		this.setState({query: ''})
-	}
-
-	filterSights = (query) => {
-		if (query) {
-			const match = new RegExp(escapeRegExp(query), 'i')
-			this.setState({filteredSights: this.state.sights.filter((sight) => match.test(sight.name) || match.test(sight.keywords))})
-		} else {
-			this.setState({filteredSights: this.state.sights})
-		}
-	}
-
 	render() {
-
-		const {sights} = this.state
-		const {query} = this.state
 
     return (
 			<div className="App">

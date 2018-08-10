@@ -22,7 +22,7 @@ export default class BeatlesMarker extends React.Component {
 						<div>
 						{this.props.showInfo ?
 							<div>
-								<img src={"https://igx.4sqi.net/img/general/width960" + this.props.data.response.venue.bestPhoto.suffix} width="300px"/>
+								<img src={"https://igx.4sqi.net/img/general/width960" + this.props.data.response.venue.bestPhoto.suffix} alt={this.props.data.response.venue.name} width="300px"/>
 								<br /><h3>{this.props.data.response.venue.name}</h3>
 								<a href={this.props.data.response.venue.canonicalUrl} target="_blank">Open on Foursquare</a>
 							</div> :
