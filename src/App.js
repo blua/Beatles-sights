@@ -9,7 +9,7 @@ class App extends Component {
 
 	state = {
 		windowWidth: window.innerWidth,
-    mobileSidebarVisible: false,
+    sidebarOpen: window.innerWidth > 900,
 		sights: data.beatlesSights,
 		latitude: 53.397734,
 		longitude: -2.936724,
@@ -21,8 +21,9 @@ class App extends Component {
 		error: ''
 	};
 
-	handleResize() {
+	handleResize = () => {
 		this.setState({windowWidth: window.innerWidth});
+		this.state.windowWidth > 900 ? this.openMobileSidebar() : this.closeMobileSidebar();
 	}
 
 	componentDidMount() {
@@ -33,17 +34,21 @@ class App extends Component {
 		window.removeEventListener('resize', () => this.handleResize());
 	}
 
-	toggleMobileSidebar = () => {
-		if (!this.state.mobileSidebarVisible) {
-    document.getElementById("sidebar").style.width = "300px";
+	openMobileSidebar = () => {
+		document.getElementById("sidebar").style.display = "block";
     // document.getElementById("App").style.marginLeft = "400px";
-		this.setState({mobileSidebarVisible: true});
-	} else {
-    document.getElementById("sidebar").style.width = "0";
-    document.getElementById("App").style.marginLeft = "0";
-		this.setState({mobileSidebarVisible: false});
+		this.setState({mobileSidebarOpen: true});
 	}
-}
+
+	closeMobileSidebar = () => {
+		document.getElementById("sidebar").style.display = "none";
+    document.getElementById("App").removeAttribute('margin-left');
+		this.setState({mobileSidebarOpen: false});
+	}
+
+	toggleMobileSidebar = () => {
+		!this.state.mobileSidebarOpen ? this.openMobileSidebar() : this.closeMobileSidebar()
+	}
 
 	updateQuery = (query) => {
 		this.setState({query: query.trim()})
@@ -86,13 +91,13 @@ class App extends Component {
     return (
 			<div className="App" id="App">
 
-				{this.state.windowWidth < 900 ?
+				{this.state.windowWidth <= 900 ?
 
 				<div className="App-header" onClick={this.toggleMobileSidebar}>Show Beatles sights!</div> : null }
 
 				<div className="wrapper">
 
-				<div className={this.state.windowWidth > 900 ? "sidebar" : "mobileSidebar"} id="sidebar">
+				<div className="sidebar" id="sidebar">
 					<Sidebar
 						sights={this.state.sights}
 						filteredSights={this.state.filteredSights}
