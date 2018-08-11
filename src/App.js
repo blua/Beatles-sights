@@ -17,7 +17,8 @@ class App extends Component {
 		filteredSights: data.beatlesSights,
 		selectedSight: {},
 		data: {},
-		showInfo: false
+		showInfo: false,
+		error: ''
 	};
 
 	handleResize() {
@@ -46,7 +47,10 @@ class App extends Component {
 		this.setState({query: ''})
 	}
 
-	/* Method to select a sight when it is clicked  */
+	/* Method to select a sight when it is clicked and open the InfoWindow with
+	its data or an error message. Since fetch only fails on network errors,
+	I added a step to check if the venue data is retrieved, and throw an error
+	if it isn't */
 	selectSight = (sight) => {
 		if (this.state.selectedSight === sight) {
 			this.setState({selectedSight: {}})
@@ -55,8 +59,10 @@ class App extends Component {
 			let url = "https://api.foursquare.com/v2/venues/" + this.state.selectedSight.foursquareID + "?client_id=HV4TWNQT0ZP3KJX4HDIQNILSAJO0CZ1EDDIT3L2BT2QMO0B4&client_secret=OLMLCMS3ZXSZSM4UOKQTWIW24WQOYNDXYPI1HUBLJ4GZEMEB&v=20150609"
 					fetch(url)
 						.then((response) => response.json())
-						.then((data) => this.setState({ data: data }))
-						.then(() => this.setState({ showInfo: true }));
+						.catch(() => this.setState({ error: 'Network error' }))
+						.then((data) => data.response.venue ?
+							this.setState({ data: data, showInfo: true })
+							: this.setState({ error: data.meta.errorDetail }));
 		}
 	}
 
@@ -99,6 +105,7 @@ class App extends Component {
 					mapElement={<div className="map" />}
 					data={this.state.data}
 					showInfo={this.state.showInfo}
+					error={this.state.error}
 				/>
 			</div>
 		</div>
