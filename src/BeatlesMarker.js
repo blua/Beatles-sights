@@ -9,9 +9,6 @@ export default class BeatlesMarker extends React.Component {
 	}
 
   render(){
-
-		console.log("showInfo: " + this.props.showInfo + ", error: " + this.props.error)
-
     return(
         <Marker
           position={this.props.location}
@@ -19,10 +16,10 @@ export default class BeatlesMarker extends React.Component {
 					onClick={this.selectThisSight}
 					animation={this.props.selected === this.props.sight ? 'DROP' : ''}
         >
-				 { this.props.selected === this.props.sight ?
+				 { this.props.selected === this.props.sight && this.props.showInfo ?
 					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
 						<div>
-						{this.props.showInfo && !this.props.error ?
+						{!this.props.error ?
 							<div>
 								<img src={"https://igx.4sqi.net/img/general/width960" + this.props.data.response.venue.bestPhoto.suffix} alt={this.props.data.response.venue.name} width="300px"/>
 								<br /><h3>{this.props.data.response.venue.name}</h3>

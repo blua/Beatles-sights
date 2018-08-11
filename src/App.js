@@ -9,7 +9,7 @@ class App extends Component {
 
 	state = {
 		windowWidth: window.innerWidth,
-    sidebarVisible: true,
+    mobileSidebarVisible: false,
 		sights: data.beatlesSights,
 		latitude: 53.397734,
 		longitude: -2.936724,
@@ -32,6 +32,18 @@ class App extends Component {
 	componentWillUnmount() {
 		window.removeEventListener('resize', () => this.handleResize());
 	}
+
+	toggleMobileSidebar = () => {
+		if (!this.state.mobileSidebarVisible) {
+    document.getElementById("sidebar").style.width = "300px";
+    // document.getElementById("App").style.marginLeft = "400px";
+		this.setState({mobileSidebarVisible: true});
+	} else {
+    document.getElementById("sidebar").style.width = "0";
+    document.getElementById("App").style.marginLeft = "0";
+		this.setState({mobileSidebarVisible: false});
+	}
+}
 
 	updateQuery = (query) => {
 		this.setState({query: query.trim()})
@@ -61,8 +73,9 @@ class App extends Component {
 						.then((response) => response.json())
 						.catch(() => this.setState({ error: 'Network error' }))
 						.then((data) => data.response.venue ?
-							this.setState({ data: data, showInfo: true })
-							: this.setState({ error: data.meta.errorDetail }));
+							this.setState({ data: data })
+							: this.setState({ error: data.meta.errorDetail }))
+						.then(() => this.setState({showInfo: true }));
 		}
 	}
 
@@ -71,16 +84,15 @@ class App extends Component {
 		console.log(this.state.windowWidth)
 
     return (
-			<div className="App">
+			<div className="App" id="App">
 
-				{this.state.windowWidth < 1000 ?
+				{this.state.windowWidth < 900 ?
 
-				<div className="App-header">Show Beatles sights!</div> : null }
+				<div className="App-header" onClick={this.toggleMobileSidebar}>Show Beatles sights!</div> : null }
 
 				<div className="wrapper">
 
-				{this.state.windowWidth > 1000 ?
-				<div className="sidebar">
+				<div className={this.state.windowWidth > 900 ? "sidebar" : "mobileSidebar"} id="sidebar">
 					<Sidebar
 						sights={this.state.sights}
 						filteredSights={this.state.filteredSights}
@@ -91,8 +103,7 @@ class App extends Component {
 						selectSight={this.selectSight}
 						selected={this.state.selectedSight}
 					/>
-				</div> : null
-			}
+				</div>
 				<BeatlesMap
 					sights={this.state.sights}
 					filteredSights={this.state.filteredSights}
