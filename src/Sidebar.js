@@ -6,7 +6,6 @@ class Sidebar extends Component {
 
 		return (
 			<div className='list-sights'>
-				<div className='list-sights'>
 					<input
 						className='search-sights'
 						type='text'
@@ -14,13 +13,11 @@ class Sidebar extends Component {
 						value={this.props.query}
 						onChange={(event) => this.props.updateQuery(event.target.value)}
 					/>
-				</div>
-
 				<ul className='sight-list'>
 					{this.props.filteredSights.map((sight) => (
 						<li key={sight.id} className='sight-list-item'>
 						 <div className='sight-details'>
-							<p onClick={() => {this.props.selectSight(sight)}} style={sight === this.props.selected ? { backgroundColor: "#00B1E1" } : {}}>{sight.name}</p>
+							<p onClick={() => {this.props.selectSight(sight)}} style={sight === this.props.selected ? { backgroundColor: "#ffd338", color: "#333" } : {}}>{sight.name}</p>
 						 </div>
 						</li>
 					))}

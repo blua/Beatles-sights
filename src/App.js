@@ -23,7 +23,7 @@ class App extends Component {
 
 	handleResize = () => {
 		this.setState({windowWidth: window.innerWidth});
-		this.state.windowWidth > 900 ? this.openMobileSidebar() : this.closeMobileSidebar();
+		this.state.windowWidth > 900 ? this.openSidebar() : this.closeSidebar();
 	}
 
 	componentDidMount() {
@@ -34,20 +34,19 @@ class App extends Component {
 		window.removeEventListener('resize', () => this.handleResize());
 	}
 
-	openMobileSidebar = () => {
-		document.getElementById("sidebar").style.display = "block";
+	openSidebar = () => {
+		document.getElementById("sidebar").className = "sidebar showing";
     // document.getElementById("App").style.marginLeft = "400px";
-		this.setState({mobileSidebarOpen: true});
+		this.setState({sidebarOpen: true});
 	}
 
-	closeMobileSidebar = () => {
-		document.getElementById("sidebar").style.display = "none";
-    document.getElementById("App").removeAttribute('margin-left');
-		this.setState({mobileSidebarOpen: false});
+	closeSidebar = () => {
+		document.getElementById("sidebar").className = "sidebar hidden";
+		this.setState({sidebarOpen: false});
 	}
 
-	toggleMobileSidebar = () => {
-		!this.state.mobileSidebarOpen ? this.openMobileSidebar() : this.closeMobileSidebar()
+	toggleSidebar = () => {
+		this.state.sidebarOpen ? this.closeSidebar() : this.openSidebar();
 	}
 
 	updateQuery = (query) => {
@@ -62,6 +61,7 @@ class App extends Component {
 
 	clearQuery = () => {
 		this.setState({query: ''})
+		console.log("query cleared")
 	}
 
 	/* Method to select a sight when it is clicked and open the InfoWindow with
@@ -91,24 +91,17 @@ class App extends Component {
     return (
 			<div className="App" id="App">
 
-				{this.state.windowWidth <= 900 ?
+				<div className="App-header">
 
-				<div className="App-header" onClick={this.toggleMobileSidebar}>Show Beatles sights!</div> : null }
+					<div className="App-title">Beatles Sights in Liverpool</div>
+
+					<div className="list-toggle" onClick={this.toggleSidebar}>
+						{this.state.sidebarOpen ? "Hide sight list" : "Show sight list"}
+					</div>
+			</div>
 
 				<div className="wrapper">
 
-				<div className="sidebar" id="sidebar">
-					<Sidebar
-						sights={this.state.sights}
-						filteredSights={this.state.filteredSights}
-						query={this.state.query}
-						updateQuery={this.updateQuery}
-						clearQuery={this.clearQuery}
-						filterSights={this.filterSights}
-						selectSight={this.selectSight}
-						selected={this.state.selectedSight}
-					/>
-				</div>
 				<BeatlesMap
 					sights={this.state.sights}
 					filteredSights={this.state.filteredSights}
@@ -123,6 +116,20 @@ class App extends Component {
 					showInfo={this.state.showInfo}
 					error={this.state.error}
 				/>
+
+				<div className="sidebar showing" id="sidebar">
+					<Sidebar
+						sights={this.state.sights}
+						filteredSights={this.state.filteredSights}
+						query={this.state.query}
+						updateQuery={this.updateQuery}
+						clearQuery={this.clearQuery}
+						filterSights={this.filterSights}
+						selectSight={this.selectSight}
+						selected={this.state.selectedSight}
+					/>
+				</div>
+
 			</div>
 		</div>
     );

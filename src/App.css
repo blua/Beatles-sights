@@ -1,21 +1,3 @@
-
-.App-header {
-	width: 100%;
-  background-color: #333;
-  height: 30px;
-  padding: 10px 0 10px 20px;
-  color: white;
-	text-align: left;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 #root {
 	position: absolute;
 	width: 100% !important;
@@ -29,29 +11,80 @@
 	background-color: #333;
 }
 
-.sidebar {
+div {
+		box-sizing: border-box;
+		font-family: "Josefin Sans";
+	}
+
+.App-header {
+  background-color: pink;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.App-title {
+	color: white;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	background-color: #ffd338;
+  padding: 10px 0 10px 20px;
+	margin: 0;
+	height: 100%;
+	flex-grow: 1;
+	font-family: Chicle;
+	letter-spacing: 3px;
+	color: white;
+	text-shadow:
+		3px 3px 0 #333,
+		-1px -1px 0 #333,
+		1px -1px 0 #333,
+		-1px 1px 0 #333,
+		1px 1px 0 #333;
+}
+
+.list-toggle {
 	width: 300px;
+	background-color:  #333;
+  padding: 10px 20px 10px 20px;
+	margin: 0;
+	color: #fff;
+}
+
+.sidebar {
 	height: 100%;
 	background-color: #333;
 	color: #fff;
 	text-align: left;
-	padding: 20px;
 	overflow-x: hidden; /* Disable horizontal scroll */
-	padding-top: 60px; /* Place content 60px from the top */
 	transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 
-.map-container {
-	width: 100%;
-	height: 100%;
+.hidden {
+	flex-basis: 0px;
 }
 
-.mobileSidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+.showing {
+	flex-basis: 300px;
+}
+
+.list-sights {
+	padding: 20px;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.map-container {
+	flex-grow: 1;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background-color: #333;
 }
 
 .wrapper {
@@ -67,4 +100,5 @@
 
 ul {
   list-style: none;
+	padding: 0;
 }
