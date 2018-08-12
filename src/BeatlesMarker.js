@@ -20,7 +20,7 @@ export default class BeatlesMarker extends React.Component {
 					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
 						<div>
 						{!this.props.error ?
-							<div>
+							<div className="info-window">
 								<img src={"https://igx.4sqi.net/img/general/width960" + this.props.data.response.venue.bestPhoto.suffix} alt={this.props.data.response.venue.name} width="300px"/>
 								<br /><h3>{this.props.data.response.venue.name}</h3>
 								<a href={this.props.data.response.venue.canonicalUrl} target="_blank">Open on Foursquare</a>

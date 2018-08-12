@@ -60,7 +60,7 @@ class App extends Component {
 	}
 
 	clearQuery = () => {
-		this.setState({query: ''})
+		this.setState({query: '', filteredSights: this.state.sights})
 		console.log("query cleared")
 	}
 
@@ -71,8 +71,10 @@ class App extends Component {
 	selectSight = (sight) => {
 		if (this.state.selectedSight === sight) {
 			this.setState({selectedSight: {}})
+			console.log("sight is now: " + this.state.selectedSight.id)
 		} else {
 			this.setState({selectedSight: sight})
+			console.log("sight is now... " + this.state.selectedSight.id)
 			let url = "https://api.foursquare.com/v2/venues/" + this.state.selectedSight.foursquareID + "?client_id=HV4TWNQT0ZP3KJX4HDIQNILSAJO0CZ1EDDIT3L2BT2QMO0B4&client_secret=OLMLCMS3ZXSZSM4UOKQTWIW24WQOYNDXYPI1HUBLJ4GZEMEB&v=20150609"
 					fetch(url)
 						.then((response) => response.json())

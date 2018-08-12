@@ -17,7 +17,7 @@ div {
 	}
 
 .App-header {
-  background-color: pink;
+  background-color: #333;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -37,28 +37,35 @@ div {
 	letter-spacing: 3px;
 	color: white;
 	text-shadow:
-		3px 3px 0 #333,
-		-1px -1px 0 #333,
-		1px -1px 0 #333,
-		-1px 1px 0 #333,
-		1px 1px 0 #333;
+		3px 3px 0 #777,
+		-1px -1px 0 #777,
+		1px -1px 0 #777,
+		-1px 1px 0 #777,
+		1px 1px 0 #777;
 }
 
 .list-toggle {
 	width: 300px;
 	background-color:  #333;
-  padding: 10px 20px 10px 20px;
-	margin: 0;
-	color: #fff;
+  padding: 0;
+	margin: auto 0;
+	color: #ffd338;
+	text-align: center;
+	cursor: pointer;
 }
 
 .sidebar {
 	height: 100%;
 	background-color: #333;
 	color: #fff;
-	text-align: left;
+	text-align: center;
 	overflow-x: hidden; /* Disable horizontal scroll */
 	transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+.search-sights {
+	display: block;
+	margin : 0 auto 30px auto;
 }
 
 .hidden {
@@ -73,7 +80,7 @@ div {
 	padding: 20px;
 }
 
-a {
+sidebar a {
 	color: #fff;
 	text-decoration: none;
 	font-weight: bold;
@@ -102,3 +109,14 @@ ul {
   list-style: none;
 	padding: 0;
 }
+
+.info-window {
+	text-align: center;
+}
+
+.info.window img {
+	padding: 50px;
+}
+
+.info-window a {color: #333;}
+.info-window a:hover {background-color: #ffd338;}
