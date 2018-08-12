@@ -18,10 +18,9 @@ export default class BeatlesMarker extends React.Component {
         >
 				 { this.props.selected === this.props.sight && this.props.showInfo ?
 					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
-						<div>
-							{console.log("in marker selected is " + this.props.selected.id)}
+						<div className="info-window">
 						{!this.props.error ?
-							<div className="info-window">
+							<div>
 								<img src={"https://igx.4sqi.net/img/general/width960" + this.props.data.response.venue.bestPhoto.suffix} alt={this.props.data.response.venue.name} width="300px"/>
 								<br /><h3>{this.props.data.response.venue.name}</h3>
 								<a href={this.props.data.response.venue.canonicalUrl} target="_blank">Open on Foursquare</a>

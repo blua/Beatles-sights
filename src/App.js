@@ -75,7 +75,7 @@ class App extends Component {
 		} else {
 			this.setState({selectedSight: sight})
 			console.log("sight is now... " + JSON.stringify(this.state.selectedSight))
-			let url = "https://api.foursquare.com/v2/venues/" + this.state.selectedSight.foursquareID + "?client_id=HV4TWNQT0ZP3KJX4HDIQNILSAJO0CZ1EDDIT3L2BT2QMO0B4&client_secret=OLMLCMS3ZXSZSM4UOKQTWIW24WQOYNDXYPI1HUBLJ4GZEMEB&v=20150609"
+			let url = "https://api.foursquare.com/v2/venues/" + sight.foursquareID + "?client_id=HV4TWNQT0ZP3KJX4HDIQNILSAJO0CZ1EDDIT3L2BT2QMO0B4&client_secret=OLMLCMS3ZXSZSM4UOKQTWIW24WQOYNDXYPI1HUBLJ4GZEMEB&v=20150609"
 			console.log("url is now... " + url)
 					fetch(url)
 						.then((response) => response.json())
