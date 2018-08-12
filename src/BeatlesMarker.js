@@ -19,6 +19,7 @@ export default class BeatlesMarker extends React.Component {
 				 { this.props.selected === this.props.sight && this.props.showInfo ?
 					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
 						<div>
+							{console.log("in marker selected is " + this.props.selected.id)}
 						{!this.props.error ?
 							<div className="info-window">
 								<img src={"https://igx.4sqi.net/img/general/width960" + this.props.data.response.venue.bestPhoto.suffix} alt={this.props.data.response.venue.name} width="300px"/>
