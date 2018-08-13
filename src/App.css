@@ -32,7 +32,7 @@ div {
   padding: 10px 0 10px 20px;
 	margin: 0;
 	height: 100%;
-	flex-grow: 1;
+	flex-grow: 10000;
 	font-family: Chicle;
 	letter-spacing: 3px;
 	color: white;
@@ -52,6 +52,9 @@ div {
 	color: #ffd338;
 	text-align: center;
 	cursor: pointer;
+	height: 50px;
+	flex-grow: 1;
+	line-height: 50px;
 }
 
 .sidebar {
@@ -63,11 +66,6 @@ div {
 	transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 
-.search-sights {
-	display: block;
-	margin : 0 auto 30px auto;
-}
-
 .hidden {
 	flex-basis: 0px;
 }
@@ -76,11 +74,40 @@ div {
 	flex-basis: 300px;
 }
 
+.search-sights {
+	display: block;
+	margin : 0 auto 30px auto;
+	border-radius: 5px;
+}
+
+input:focus {
+    border: 3px #ffd338 solid;
+}
+
 .list-sights {
 	padding: 20px;
 }
 
-sidebar a {
+.sight-list-item {
+
+}
+
+.sight-list-selected {
+	 backgroundColor: "#ffd338";
+	 color: "#333";
+}
+
+.showing-sights {
+	margin-top: 30px;
+	color: #999;
+}
+
+.showing-sights button {
+	margin-top: 15px;
+	color: #333;
+}
+
+.sidebar a {
 	color: #fff;
 	text-decoration: none;
 	font-weight: bold;
@@ -120,3 +147,8 @@ ul {
 
 .info-window a {color: #333;}
 .info-window a:hover {background-color: #ffd338;}
+
+.sight-image {
+	width: 300px;
+	max-width: 90vw;
+}

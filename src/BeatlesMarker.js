@@ -1,5 +1,5 @@
 import React from "react";
-import { Marker, InfoWindow } from "react-google-maps";
+import { Marker, InfoWindow, Size } from "react-google-maps";
 import SubmarineIcon from "./submarine.png";
 
 export default class BeatlesMarker extends React.Component {
@@ -9,10 +9,11 @@ export default class BeatlesMarker extends React.Component {
 	}
 
   render(){
+
     return(
         <Marker
           position={this.props.location}
-          icon={this.props.selected === this.props.sight ? SubmarineIcon : ''}
+          icon={this.props.selected === this.props.sight ? SubmarineIcon : 'http://maps.google.com/mapfiles/ms/icons/pink.png'}
 					onClick={this.selectThisSight}
 					animation={this.props.selected === this.props.sight ? 'DROP' : ''}
         >
@@ -21,7 +22,7 @@ export default class BeatlesMarker extends React.Component {
 						<div className="info-window">
 						{!this.props.error ?
 							<div>
-								<img src={"https://igx.4sqi.net/img/general/width960" + this.props.data.response.venue.bestPhoto.suffix} alt={this.props.data.response.venue.name} width="300px"/>
+								<img className="sight-image" src={"https://igx.4sqi.net/img/general/width960" + this.props.data.response.venue.bestPhoto.suffix} alt={this.props.data.response.venue.name} />
 								<br /><h3>{this.props.data.response.venue.name}</h3>
 								<a href={this.props.data.response.venue.canonicalUrl} target="_blank">Open on Foursquare</a>
 							</div> :

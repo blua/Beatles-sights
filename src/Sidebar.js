@@ -15,10 +15,8 @@ class Sidebar extends Component {
 					/>
 				<ul className='sight-list'>
 					{this.props.filteredSights.map((sight) => (
-						<li key={sight.id} className='sight-list-item'>
-						 <div className='sight-details'>
-							<p onClick={() => {this.props.selectSight(sight)}} style={sight === this.props.selected ? { backgroundColor: "#ffd338", color: "#333" } : {}}>{sight.name}</p>
-						 </div>
+						<li key={sight.id}>
+							<p onClick={() => {this.props.selectSight(sight)}} className={sight === this.props.selected ? 'sight-list-selected' : 'sight-list-item'}>{sight.name}</p>
 						</li>
 					))}
 				</ul>
