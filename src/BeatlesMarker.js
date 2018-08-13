@@ -18,7 +18,7 @@ export default class BeatlesMarker extends React.Component {
 					animation={this.props.selected === this.props.sight ? 'DROP' : ''}
         >
 				 { this.props.selected === this.props.sight && this.props.showInfo ?
-					<InfoWindow maxWidth={800} defaultPosition={ this.props.location }>
+					<InfoWindow defaultPosition={ this.props.location }>
 						<div className="info-window">
 						{!this.props.error ?
 							<div>

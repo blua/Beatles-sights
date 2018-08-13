@@ -137,12 +137,12 @@ ul {
 	padding: 0;
 }
 
-.info-window {
-	text-align: center;
+.info-window-wrapper {
+	max-width: 50vw;
 }
 
-.info.window img {
-	padding: 50px;
+.info-window {
+	text-align: center;
 }
 
 .info-window a {color: #333;}
@@ -150,5 +150,7 @@ ul {
 
 .sight-image {
 	width: 300px;
-	max-width: 90vw;
+	max-width: 40vw;
+	padding: 0;
+	margin: 0;
 }

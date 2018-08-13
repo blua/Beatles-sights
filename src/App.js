@@ -73,7 +73,8 @@ class App extends Component {
 			this.setState({selectedSight: {}})
 			console.log("sight is now: " + this.state.selectedSight.id)
 		} else {
-			this.setState({selectedSight: sight})
+			console.log("trying")
+			this.setState({selectedSight: sight, showInfo: false, latitude: sight.location.lat, longitude: sight.location.lng})
 			console.log("sight is now... " + JSON.stringify(sight.selectedSight))
 			let url = "https://api.foursquare.com/v2/venues/" + sight.foursquareID + "?client_id=HV4TWNQT0ZP3KJX4HDIQNILSAJO0CZ1EDDIT3L2BT2QMO0B4&client_secret=OLMLCMS3ZXSZSM4UOKQTWIW24WQOYNDXYPI1HUBLJ4GZEMEB&v=20150609"
 			console.log("url is now... " + url)
@@ -96,7 +97,9 @@ class App extends Component {
 
 				<div className="App-header">
 
-					<div className="App-title">Beatles Sights in Liverpool</div>
+					<div className="App-title">
+						{this.state.windowWidth > 600 ? "Beatles Sights in Liverpool" : "Beatles in L'pool"}
+					</div>
 
 					<div className="list-toggle" onClick={this.toggleSidebar}>
 						{this.state.sidebarOpen ? "Hide sight list" : "Show sight list"}
