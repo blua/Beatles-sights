@@ -1,5 +1,5 @@
 import React from "react";
-import { Marker, InfoWindow, Size } from "react-google-maps";
+import { Marker, InfoWindow } from "react-google-maps";
 import SubmarineIcon from "./submarine.png";
 
 export default class BeatlesMarker extends React.Component {
@@ -13,7 +13,7 @@ export default class BeatlesMarker extends React.Component {
     return(
         <Marker
           position={this.props.location}
-          icon={this.props.selected === this.props.sight ? SubmarineIcon : 'http://maps.google.com/mapfiles/ms/icons/pink.png'}
+          icon={this.props.selected === this.props.sight ? SubmarineIcon : 'http://maps.google.com/mapfiles/ms/icons/lightblue.png'}
 					onClick={this.selectThisSight}
 					animation={this.props.selected === this.props.sight ? 'DROP' : ''}
         >

@@ -64,29 +64,39 @@ class App extends Component {
 		console.log("query cleared")
 	}
 
-	/* Method to select a sight when it is clicked and open the InfoWindow with
-	its data or an error message. Since fetch only fails on network errors,
-	I added a step to check if the venue data is retrieved, and throw an error
-	if it isn't */
+	/* Method to select a sight when it is clicked and open the InfoWindow.
+	If the screen is small, re-center the map on the chosen location
+	(so the infowindow won't appear offscreen) and close the sidebar */
 	selectSight = (sight) => {
 		if (this.state.selectedSight === sight) {
 			this.setState({selectedSight: {}})
-			console.log("sight is now: " + this.state.selectedSight.id)
 		} else {
-			console.log("trying")
-			this.setState({selectedSight: sight, showInfo: false, latitude: sight.location.lat, longitude: sight.location.lng})
-			console.log("sight is now... " + JSON.stringify(sight.selectedSight))
-			let url = "https://api.foursquare.com/v2/venues/" + sight.foursquareID + "?client_id=HV4TWNQT0ZP3KJX4HDIQNILSAJO0CZ1EDDIT3L2BT2QMO0B4&client_secret=OLMLCMS3ZXSZSM4UOKQTWIW24WQOYNDXYPI1HUBLJ4GZEMEB&v=20150609"
-			console.log("url is now... " + url)
-					fetch(url)
-						.then((response) => response.json())
-						.catch(() => this.setState({ error: 'Network error' }))
-						.then((data) => data.response.venue ?
-							this.setState({ data: data })
-							: this.setState({ error: data.meta.errorDetail }))
-						.then(() => this.setState({showInfo: true }));
+			this.setState({selectedSight: sight, showInfo: false})
+			this.requestFSQ(sight);
+ 		  if (this.state.windowWidth <= 600) {
+				this.setState({latitude: sight.location.lat, longitude: sight.location.lng});
+				this.closeSidebar();
+			}
 		}
 	}
+
+	/* Fetch data from the Foursquare API and open the infowindow with it inside.
+	Since fetch only fails on network errors, I added a step to check if
+	the venue data is retrieved, and throw an error if it isn't */
+requestFSQ = (sight) => {
+let url = "https://api.foursquare.com/v2/venues/" + sight.foursquareID + "?client_id=HV4TWNQT0ZP3KJX4HDIQNILSAJO0CZ1EDDIT3L2BT2QMO0B4&client_secret=OLMLCMS3ZXSZSM4UOKQTWIW24WQOYNDXYPI1HUBLJ4GZEMEB&v=20150609"
+console.log("url is now... " + url)
+		fetch(url)
+			.then((response) => response.json())
+			.catch(() => this.setState({ error: 'Network error' }))
+			.then((data) => {
+			if (data.response.venue) {
+				this.setState({ data: data })
+			} else {
+				this.setState({ error: data.meta.errorDetail })}})
+			.then(() => this.setState({showInfo: true }))
+
+}
 
 	render() {
 

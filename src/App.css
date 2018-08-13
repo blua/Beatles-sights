@@ -28,7 +28,7 @@ div {
 	text-align: center;
 	font-size: 25px;
 	font-weight: bold;
-	background-color: #ffd338;
+	background-color: #67dddd;
   padding: 10px 0 10px 20px;
 	margin: 0;
 	height: 100%;
@@ -49,7 +49,7 @@ div {
 	background-color:  #333;
   padding: 0;
 	margin: auto 0;
-	color: #ffd338;
+	color: #67dddd;
 	text-align: center;
 	cursor: pointer;
 	height: 50px;
@@ -93,8 +93,8 @@ input:focus {
 }
 
 .sight-list-selected {
-	 backgroundColor: "#ffd338";
-	 color: "#333";
+	 background-color: #ffd338;
+	 color: #333;
 }
 
 .showing-sights {
