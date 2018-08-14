@@ -102,17 +102,24 @@ class App extends Component {
 				.then(() => this.setState({showInfo: true }))
 	}
 
+	checkFocus = () => document.addEventListener('focusin', function() {console.log(document.activeElement)}, false)
+
 	render() {
+
+this.checkFocus()
 		return (
-			// Display smaller title and don't open sidebar if window is small
+			/* Display smaller title and don't open sidebar if window is small.
+			I have decided to assign tabIndexes to some elements, as I really think
+			jumping straight to the list-toggle and then the searchbox and the list
+			is the easiest way to navigate through the site */
 			<div className="App">
 				<div className="App-header">
 					<div className="App-title">
 						{this.state.windowWidth > 600 ? "Beatles Sights in Liverpool" : "Beatles in L'pool"}
 					</div>
-					<div className="list-toggle" onClick={this.toggleSidebar}>
-						{this.state.sidebarOpen ? "Hide sight list" : "Show sight list"}
-					</div>
+						<button className="list-toggle" onClick={this.toggleSidebar} tabIndex="1">
+							{this.state.sidebarOpen ? "Hide sight list" : "Show sight list"}
+						</button>
 				</div>
 				<div className="wrapper">
 					<BeatlesMap

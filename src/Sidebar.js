@@ -15,11 +15,13 @@ class Sidebar extends Component {
 					placeholder="Search Beatles sights"
 					value={this.props.query}
 					onChange={(event) => this.props.filterSights(event.target.value)}
+					role="searchbox"
+					tabIndex="2"
 				/>
 				<ul>
 					{orderedSights.map((sight) => (
 						<li key={sight.id}>
-							<p onClick={() => {this.props.selectSight(sight)}} className={sight === this.props.selected ? "sight-list-selected" : null}>{sight.name}</p>
+							<button onClick={() => {this.props.selectSight(sight)}} className={sight === this.props.selected ? "sight-list-selected" : "sight-list-normal"} tabIndex="3">{sight.name}</button>
 						</li>
 					))}
 				</ul>
@@ -30,7 +32,7 @@ class Sidebar extends Component {
 							<span>No matching sights</span> :
 							<span>Now showing {this.props.filteredSights.length} of {this.props.sights.length} Beatles sights</span>
 						}
-						<br /><button onClick={this.props.clearQuery}>Show all</button>
+						<br /><button onClick={this.props.clearQuery} tabIndex="4">Show all</button>
 					</div> : null
 				}
 			</div>

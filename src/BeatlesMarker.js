@@ -28,7 +28,10 @@ export default class BeatlesMarker extends React.Component {
 									<p className="sight-description">{sight.description}</p>
 									<br /><a href={data.response.venue.canonicalUrl} target="_blank">Open on Foursquare</a>
 								</div> :
-									<span>Sorry, no info about <b>{sight.name}</b> available at the moment, due to the following error:<br />{this.props.error}</span>
+									<span>
+										Sorry, no info about <b>{sight.name}</b> available at the moment, due to the following error:
+										<br /><span className="error">{this.props.error}</span>
+									</span>
 							}
 						</div>
 					</InfoWindow> : null
