@@ -5,6 +5,8 @@
 
 # testing
 /coverage
+foursquare_API_response.json
+/src/submarineBig.png
 
 # production
 /build
