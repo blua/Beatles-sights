@@ -16,13 +16,12 @@ class Sidebar extends Component {
 					value={this.props.query}
 					onChange={(event) => this.props.filterSights(event.target.value)}
 					role="searchbox"
-					tabIndex="2"
 					aria-label="Search Beatles sights"
 				/>
 				<ul>
 					{orderedSights.map((sight) => (
 						<li key={sight.id}>
-							<button onClick={() => {this.props.selectSight(sight)}} className={sight === this.props.selected ? "sight-list-selected" : "sight-list-normal"} tabIndex="3">{sight.name}</button>
+							<button onClick={() => {this.props.selectSight(sight)}} className={sight === this.props.selected ? "sight-list-selected" : "sight-list-normal"}>{sight.name}</button>
 						</li>
 					))}
 				</ul>
@@ -33,7 +32,7 @@ class Sidebar extends Component {
 							<span>No matching sights</span> :
 							<span>Now showing {this.props.filteredSights.length} of {this.props.sights.length} Beatles sights</span>
 						}
-						<br /><button onClick={this.props.clearQuery} tabIndex="4">Show all</button>
+						<br /><button onClick={this.props.clearQuery}>Show all</button>
 					</div> : null
 				}
 			</div>

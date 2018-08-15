@@ -108,20 +108,28 @@ class App extends Component {
 
 this.checkFocus()
 		return (
-			/* Display smaller title and don't open sidebar if window is small.
-			I have decided to assign tabIndexes to some elements, as I really think
-			jumping straight to the list-toggle and then the searchbox and the list
-			is the easiest way to navigate through the site */
+			/* Display smaller title and don't open sidebar if window is small. */
 			<div className="App">
 				<div className="App-header">
-					<h1 className="App-title">
-						{this.state.windowWidth > 600 ? "Beatles Sights in Liverpool" : "Beatles in L'pool"}
-					</h1>
-						<button className="list-toggle" onClick={this.toggleSidebar} tabIndex="1">
+						<button className="list-toggle" onClick={this.toggleSidebar}>
 							{this.state.sidebarOpen ? "Hide sight list" : "Show sight list"}
 						</button>
+						<h1 className="App-title">
+							{this.state.windowWidth > 600 ? "Beatles Sights in Liverpool" : "Beatles in L'pool"}
+						</h1>
 				</div>
 				<div className="wrapper">
+					<div className={this.state.sidebarOpen ? "sidebar showing" : "sidebar hidden"} id="sidebar">
+						<Sidebar
+							sights={this.state.sights}
+							filteredSights={this.state.filteredSights}
+							query={this.state.query}
+							clearQuery={this.clearQuery}
+							filterSights={this.filterSights}
+							selectSight={this.selectSight}
+							selected={this.state.selectedSight}
+						/>
+					</div>
 					<BeatlesMap
 						filteredSights={this.state.filteredSights}
 						location={ {lat: this.state.latitude, lng: this.state.longitude}}
@@ -135,17 +143,6 @@ this.checkFocus()
 						showInfo={this.state.showInfo}
 						error={this.state.error}
 					/>
-					<div className={this.state.sidebarOpen ? "sidebar showing" : "sidebar hidden"} id="sidebar">
-						<Sidebar
-							sights={this.state.sights}
-							filteredSights={this.state.filteredSights}
-							query={this.state.query}
-							clearQuery={this.clearQuery}
-							filterSights={this.filterSights}
-							selectSight={this.selectSight}
-							selected={this.state.selectedSight}
-						/>
-					</div>
 				</div>
 			</div>
 	  );

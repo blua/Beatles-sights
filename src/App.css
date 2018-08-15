@@ -19,7 +19,7 @@ div {
 .App-header {
   background-color: #333;
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: wrap-reverse;
 	justify-content: space-between;
 }
 
@@ -54,10 +54,10 @@ div {
 	text-align: center;
 	cursor: pointer;
 	height: 50px;
-	flex-grow: 1;
 	line-height: 50px;
 	font-size: 16px;
 	font-weight: bold;
+	flex-grow: 1;
 }
 
 .list-toggle:focus, .list-toggle:hover {
@@ -95,7 +95,7 @@ div {
 
 .search-sights {
 	display: block;
-	margin : 0 auto 30px auto;
+	margin : 0 auto 20px auto;
 	border-radius: 5px;
 }
 
@@ -108,7 +108,7 @@ li button {
 	font-family: "Josefin Sans";
 	font-weight: 400;
 	font-size: 16px;
-	margin: 5px auto;
+	padding: 10px;
 }
 
 .sight-list-normal {
