@@ -17,6 +17,7 @@ class Sidebar extends Component {
 					onChange={(event) => this.props.filterSights(event.target.value)}
 					role="searchbox"
 					tabIndex="2"
+					aria-label="Search Beatles sights"
 				/>
 				<ul>
 					{orderedSights.map((sight) => (

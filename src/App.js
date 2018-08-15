@@ -114,9 +114,9 @@ this.checkFocus()
 			is the easiest way to navigate through the site */
 			<div className="App">
 				<div className="App-header">
-					<div className="App-title">
+					<h1 className="App-title">
 						{this.state.windowWidth > 600 ? "Beatles Sights in Liverpool" : "Beatles in L'pool"}
-					</div>
+					</h1>
 						<button className="list-toggle" onClick={this.toggleSidebar} tabIndex="1">
 							{this.state.sidebarOpen ? "Hide sight list" : "Show sight list"}
 						</button>

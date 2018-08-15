@@ -28,7 +28,7 @@ div {
 	text-align: center;
 	font-size: 25px;
 	font-weight: bold;
-	background-color: #67dddd;
+	background-color: #ffd338;
   padding: 10px 0 10px 20px;
 	margin: 0;
 	height: 100%;
@@ -50,7 +50,7 @@ div {
   padding: 0;
 	margin: auto 0;
 	border: none;
-	background-color: #67dddd;
+	background-color: #ffd338;
 	text-align: center;
 	cursor: pointer;
 	height: 50px;
@@ -60,13 +60,8 @@ div {
 	font-weight: bold;
 }
 
-.list-toggle:focus {
-	color: #67dddd;
-	background-color: #333;
-}
-
-.list-toggle a:hover {
-	color: #67dddd;
+.list-toggle:focus, .list-toggle:hover {
+	color: #ffd338;
 	background-color: #333;
 }
 
@@ -119,6 +114,7 @@ li button {
 .sight-list-normal {
 	background-color: #333;
 	color: #fff;
+	cursor: pointer;
 }
 
 .sight-list-selected {
@@ -126,8 +122,8 @@ li button {
 	color: #333;
 }
 
-.sight-list-normal:focus {
-	background-color: #fff;
+.sight-list-normal:focus, .sight-list-normal:hover {
+	background-color: #67dddd;
 	color: #333;
 }
 
