@@ -15,7 +15,7 @@ export default class BeatlesMarker extends React.Component {
 		return(
 	    <Marker
 	      position={sight.location}
-	      icon={selected === sight ? SubmarineIcon : "http://maps.google.com/mapfiles/ms/icons/lightblue.png"}
+	      icon={selected === sight ? null : "http://maps.google.com/mapfiles/ms/icons/lightblue.png"}
 				onClick={this.selectThisSight}
 	    >
 				{selected === sight && this.props.showInfo ?

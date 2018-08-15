@@ -96,17 +96,14 @@ class App extends Component {
 				.catch(() => this.setState({ error: "Network error" }))
 				.then((data) => {
 					if (data.response.venue) {
-						this.setState({ data: data })
+						this.setState({ data: data, error: "" })
 					} else {
 						this.setState({ error: data.meta.errorDetail })}})
 				.then(() => this.setState({showInfo: true }))
 	}
 
-	checkFocus = () => document.addEventListener('focusin', function() {console.log(document.activeElement)}, false)
-
 	render() {
 
-this.checkFocus()
 		return (
 			/* Display smaller title and don't open sidebar if window is small. */
 			<div className="App">
