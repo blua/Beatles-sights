@@ -111,11 +111,13 @@ class App extends Component {
 						<button className="list-toggle" onClick={this.toggleSidebar}>
 							{this.state.sidebarOpen ? "Hide sight list" : "Show sight list"}
 						</button>
+						{/* Display smaller title if window is <= 600px wide. */}
 						<h1 className="App-title">
 							{this.state.windowWidth > 600 ? "Beatles Sights in Liverpool" : "Beatles in L'pool"}
 						</h1>
 				</div>
 				<div className="wrapper">
+					{/* Only open sidebar if window is > 600px wide */}
 					<div className={this.state.sidebarOpen ? "sidebar showing" : "sidebar hidden"} id="sidebar">
 						<Sidebar
 							sights={this.state.sights}

@@ -18,6 +18,7 @@ class Sidebar extends Component {
 					role="searchbox"
 					aria-label="Search Beatles sights"
 				/>
+				{/* Used buttons in the list for better accessibility */}
 				<ul>
 					{orderedSights.map((sight) => (
 						<li key={sight.id}>
@@ -25,7 +26,10 @@ class Sidebar extends Component {
 						</li>
 					))}
 				</ul>
-
+				{/*
+					If list is filtered, indicate how many sights are showing and a button
+					to show them all again
+				*/}
 				{this.props.filteredSights.length !== this.props.sights.length ?
 					<div className="showing-sights">
 						{this.props.filteredSights.length === 0 ?

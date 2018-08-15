@@ -18,6 +18,10 @@ export default class BeatlesMarker extends React.Component {
 	      icon={selected === sight ? SubmarineIcon : "http://maps.google.com/mapfiles/ms/icons/lightblue.png"}
 				onClick={this.selectThisSight}
 	    >
+				{/*
+					If this is the selected sight and showInfo is true, meaning
+					the fetch request has worked
+				*/}
 				{selected === sight && this.props.showInfo ?
 					<InfoWindow defaultPosition={ sight.location }>
 						<div className="info-window">
