@@ -109,20 +109,19 @@ class App extends Component {
 		}
 
 		return (
-			/* Display smaller title and don't open sidebar if window is small. */
 			<div className="App">
-				<div className="App-header">
-						<button className="list-toggle" onClick={this.toggleSidebar}>
-							{this.state.sidebarOpen ? "Hide sight list" : "Show sight list"}
-						</button>
-						{/* Display smaller title if window is <= 600px wide. */}
-						<h1 className="App-title">
-							{this.state.windowWidth > 600 ? "Beatles Sights in Liverpool" : "Beatles in L'pool"}
-						</h1>
-				</div>
-				<div className="wrapper">
+				<header className="App-header">
+					<button className="list-toggle" onClick={this.toggleSidebar}>
+						{this.state.sidebarOpen ? "Hide sight list" : "Show sight list"}
+					</button>
+					{/* Display smaller title if window is <= 600px wide. */}
+					<h1 className="App-title">
+						{this.state.windowWidth > 600 ? "Beatles Sights in Liverpool" : "Beatles in L'pool"}
+					</h1>
+				</header>
+				<main className="wrapper">
 					{/* Only open sidebar if window is > 600px wide */}
-					<div className={this.state.sidebarOpen ? "sidebar showing" : "sidebar hidden"} id="sidebar">
+					<section className={this.state.sidebarOpen ? "sidebar showing" : "sidebar hidden"} id="sidebar">
 						<Sidebar
 							sights={this.state.sights}
 							filteredSights={this.state.filteredSights}
@@ -132,7 +131,7 @@ class App extends Component {
 							selectSight={this.selectSight}
 							selected={this.state.selectedSight}
 						/>
-					</div>
+					</section>
 					<BeatlesMap
 						filteredSights={this.state.filteredSights}
 						location={ {lat: this.state.latitude, lng: this.state.longitude}}
@@ -140,13 +139,13 @@ class App extends Component {
 						selected={this.state.selectedSight}
 						googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDyRtaH9hDTxrFTNaC_de76xgGsoXrvecY&v=3.exp&libraries=geometry,drawing,places`}
 						loadingElement={<div style={{ height: `100%` }} />}
-						containerElement={<div className="map-container" />}
+						containerElement={<div className="map-container" role="application" />}
 						mapElement={<div className="map" />}
 						data={this.state.data}
 						showInfo={this.state.showInfo}
 						error={this.state.error}
 					/>
-				</div>
+				</main>
 			</div>
 	  );
 	}
