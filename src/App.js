@@ -104,6 +104,10 @@ class App extends Component {
 
 	render() {
 
+		window.gm_authFailure = () => {
+			alert("It seems that Google maps is having A Hard Day's Night :( Please try again later.");
+		}
+
 		return (
 			/* Display smaller title and don't open sidebar if window is small. */
 			<div className="App">
