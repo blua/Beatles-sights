@@ -6,12 +6,14 @@ It was developed using **[React](https://reactjs.org/)** as the final project of
 
 ## Installation
 
-You can install this app in 5 easy steps:
+You can install this app in 7 easy steps:
 1. Download the files
 2. Navigate to the folder where they are
 3. Run `npm install` to install its dependencies
-4. Run `npm start` to launch the server
-5. Open http://localhost:3000 in your browser
+4. Run `npm build` to build a production version of the app
+5. Run `npm install -g serve` to install the [serve](https://github.com/zeit/serve) package if you don't have it yet
+6. Run `serve -s build` to launch the server
+7. Open http://localhost:5000 in your browser
 
 ## How to use
 
