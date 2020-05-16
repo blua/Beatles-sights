@@ -1,8 +1,5 @@
 {
-    "homepage": "https://blua.github.io/Beatles-sights",
-    "name": "Beatles sights in Liverpool",
-}
-{
+  "homepage": "https://blua.github.io/Beatles-sights",
   "name": "udacity_neighborhood_map",
   "version": "0.1.0",
   "private": true,
